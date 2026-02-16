@@ -1,0 +1,129 @@
+# Get user input
+print("Hello! This is a program dedicated to helping you learn python. Please provide us with some information")
+name = input("What is your name?: ")
+time = int(input("How much time are you willing to spend learning python everyday? (in hours): "))
+programs = input("What do you want to learn: basics, data-structures, web-scraping, automation, game-dev?: ")
+email = input("Do you want to get emailed your planner? (Yes/No): ")
+weeks = int(input("How many weeks do you want to follow this plan?: "))
+
+# Hours learning to code everyday
+if time < 2:
+    print("You need to spend more time than that to learn coding" )
+elif time >= 8:
+    print("You are not going to be able to do this consistently but we'll try and help")
+elif time >= 2:
+    print("That is a great amount of time to spend learning code")
+else:
+    print("Invalid times, please try again.")
+    exit()
+
+#Calculate how many hours a user will study in the weeks and time they provide
+if weeks <= 0:
+    print("Invalid number! Please increase the amount of weeks you plan on studying this.")
+    exit()
+elif weeks <= 10:
+    print(f"I will help you study this for {weeks} week/ weeks.")
+else:
+    print(f"This is a lot of time for this plan I will help you through it.")
+
+#Calculate total hours
+total_hours = time * 7 * weeks
+print(f"\nIn {weeks} weeks you'll have practiced for {total_hours} hours total.")
+print(f"That's {total_hours // 60} days worth of learning")
+
+# User's interest in program
+if programs.lower() == "basics":
+    print("Hello I will help you learn basics")
+    print("\n=== Your learning path ===")
+    print("Week 1: Variables and data types")
+    print("Week 2: If Statements and loops")
+    print("Week 3: Functions and error handling")
+    print("Week 4: File handling and final project")
+elif programs.lower() == "data-structures":
+    print("Hello I will help you learn data-structures")
+    print("\n=== Your Learning Path ===")
+    print("Week 1: Lists and tuples")
+    print("Week 2: Dictionaries and sets")
+    print("Week 3: List comprehensions")
+    print("Week 4: Advanced data manipulation")
+elif programs.lower() == "web-scraping":
+    print("Hello I will help you learn web-scraping")
+    print("\n=== Your Learning Path ===")
+    print("Week 1: HTML basics and requests library")
+    print("Week 2: Beautiful Soup for parsing")
+    print("Week 3: Handling dynamic content")
+    print("Week 4: Building a complete scraper")
+elif programs.lower() == "automation":
+    print("I will help you learn automation.")
+    print("\n=== Your Learning Path ===")
+    print("Week 1: File and folder automation")
+    print("Week 2: Email automation")
+    print("Week 3: Web automation with Selenium")
+    print("Week 4: Scheduling tasks")
+elif programs.lower() == "game-dev":
+    print("I will help you learn game-dev")
+    print("\n=== Your Learning Path ===")
+    print("Week 1: Pygame basics and graphics")
+    print("Week 2: Sprites and movement")
+    print("Week 3: Collision detection and scoring")
+    print("Week 4: Build your first complete game")
+else:
+    print("Invalid answer, please try again")
+    exit()
+
+# Asking the user if email is ok
+if email.lower() == "yes":
+    user_email = input("Please provide use with your email: ")
+    print(f"We'll send the planner to {user_email}")
+elif email.lower() == "no":
+    print("we will not email you it, you'll just get the info whenever you log in")
+    user_email = None
+else:
+    print("invalid answer, please write yes or no")
+    exit()
+
+# File to send and save user data
+with open("user_plan.txt", "w") as file:
+    file.write(f"Learning Plan for {name}\n")
+    file.write("=" * 30 + "\n")
+    file.write(f"Daily time commitment: {time} hour(s)\n")
+    file.write(f"Program duration: {weeks} weeks\n")
+    file.write(f"Total hours: {total_hours}\n")
+    file.write(f"Topic: {programs}\n")
+    file.write(f"Email notifications: {email}\n")
+    if email.lower() == "yes":
+        file.write(f"Email address: {user_email}\n")
+
+    file.write("\n=== Your Curriculum ===\n")
+    if programs.lower() == "basics":
+        file.write("Week 1: Variables and data types\n")
+        file.write("Week 2: If statements and loops\n")
+        file.write("Week 3: Functions and error handling\n")
+        file.write("Week 4: File handling and final project\n")
+    elif programs.lower() == "data-structures":
+        file.write("Week 1: Lists and tuples\n")
+        file.write("Week 2: Dictionaries and sets\n")
+        file.write("Week 3: List comprehensions\n")
+        file.write("Week 4: Advanced data manipulation\n")
+    elif programs.lower() == "web-scraping":
+        file.write("Week 1: HTML basics and requests library\n")
+        file.write("Week 2: Beautiful Soup for parsing\n")
+        file.write("Week 3: Handling dynamic content\n")
+        file.write("Week 4: Building a complete scraper\n")
+    elif programs.lower() == "automation":
+        file.write("Week 1: File and folder automation\n")
+        file.write("Week 2: Email automation\n")
+        file.write("Week 3: Web automation with Selenium\n")
+        file.write("Week 4: Scheduling tasks\n")
+    elif programs.lower() == "game-dev":
+        file.write("Week 1: Pygame basics and graphics\n")
+        file.write("Week 2: Sprites and movement\n")
+        file.write("Week 3: Collision detection and scoring\n")
+        file.write("Week 4: Build your first complete game\n")
+print("Your plan has been saved to user_plan.txt!")
+
+
+# Outputs
+print(f"Hello {name} thank you for providing us with the information we asked for.")
+print(f"Based on time you provided we shall teach you {programs} for {time} hour/ hours everyday.")
+print(f"In total {total_hours} hours.")
